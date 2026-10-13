@@ -1,0 +1,364 @@
+// Client side implementation of UDP client-server model - side that will be "sending" the file.
+#include <unistd.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <cstdlib>
+#include <thread>
+#include <vector>
+#include <mutex>
+#include <algorithm>
+#include <chrono>
+
+#include "zap_protocol.hpp"
+#include "zap_cli.hpp"
+
+static std::mutex g_coutMutex;
+
+static bool send_chunk(const std::string& filename, const std::string& serverIP, int port, uint64_t startOffset, uint64_t endOffset,
+                            uint32_t startSeq, int threadIndex, uint32_t chunkSize) {
+    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd < 0) {
+        perror("socket creation failed (thread)");
+        return false;
+    }
+
+    struct sockaddr_in servaddr{};
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(port);
+    if (inet_pton(AF_INET, serverIP.c_str(), &servaddr.sin_addr) <= 0) {
+        std::cerr << "Invalid server IP address in thread " << threadIndex << std::endl;
+        close(sockfd);
+        return false;
+    }
+
+    if (connect(sockfd, reinterpret_cast<sockaddr*>(&servaddr), sizeof(servaddr)) < 0) {
+        perror("connect (thread)");
+        close(sockfd);
+        return false;
+    }
+
+    int sndbuf = 32 * 1024 * 1024; //replicating  increase on client
+    setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, &sndbuf, sizeof(sndbuf));
+
+    std::ifstream file(filename, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Thread " << threadIndex << " could not open file" << std::endl;
+        close(sockfd);
+        return false;
+    }
+    file.seekg(static_cast<std::streamoff>(startOffset));
+
+    uint32_t sequence = startSeq;
+    uint64_t bytesRemaining = endOffset - startOffset;
+
+    while (bytesRemaining > 0) {
+        Packet dataPacket{};
+        dataPacket.type = PACKET_DATA;
+        dataPacket.sequence = sequence;
+
+        uint32_t toRead = static_cast<uint32_t>(std::min<uint64_t>(chunkSize, bytesRemaining));
+        file.read(dataPacket.data, toRead);
+        std::streamsize bytesRead = file.gcount();
+        if (bytesRead <= 0) break;
+
+        dataPacket.data_length = static_cast<uint32_t>(bytesRead);
+
+        ssize_t bytesSent = send(sockfd, &dataPacket, packet_wire_size(dataPacket), 0);
+        if (bytesSent < 0) {
+            perror("send (thread), skipping this packet");
+        }
+        if (chunkSize > 1500) {
+            std::this_thread::sleep_for(std::chrono::microseconds(1500)); // added sleep for big packets
+        }
+
+        bytesRemaining -= static_cast<uint64_t>(bytesRead);
+        sequence++;
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(g_coutMutex);
+    }
+
+    file.close();
+    close(sockfd);
+    return true;
+}
+
+
+static bool resend_packet(int sockfd, std::ifstream& file, uint32_t sequence, uint64_t fileSize, uint32_t chunkSize) {
+    uint64_t offset = static_cast<uint64_t>(sequence) * chunkSize;
+
+    if (offset >= fileSize) {
+        std::cerr << "Invalid retransmission sequence: " << sequence << std::endl;
+        return false;
+    }
+
+    // Reuse the already-open file instead of opening/closing it for every retransmission.
+    file.clear();
+    file.seekg(static_cast<std::streamoff>(offset));
+
+    uint64_t remaining = fileSize - offset;
+    uint32_t bytesToRead = static_cast<uint32_t>( std::min<uint64_t>(chunkSize, remaining));
+
+    Packet packet{};
+    packet.type = PACKET_DATA;
+    packet.sequence = sequence;
+    packet.data_length = bytesToRead;
+    file.read(packet.data, bytesToRead);
+
+    if (!file) {
+        std::cerr << "Failed to read packet " << sequence << std::endl;
+        return false;
+    }
+
+    ssize_t bytesSent = send(sockfd, &packet, packet_wire_size(packet), 0);
+    if (bytesSent < 0) {
+        perror("send retransmission");
+        return false;
+    }
+
+    return true;
+}
+
+int main(int argc, char* argv[]) {
+    int retransmitCount = 0;
+    Args args;
+    if (!parse_args(argc, argv, &args)) {
+        return EXIT_FAILURE;
+    }
+
+    int sockfd;
+    const char* serverIP = args.ip_address.c_str();
+    const char* filename = args.file_path.c_str();
+    struct sockaddr_in servaddr;
+    std::ifstream inputFile(filename, std::ios::binary);
+
+    if (!inputFile.is_open()){
+        std::cerr<< "Could not open file: " << filename << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    std::cout << "Opened file: " << filename << std::endl;
+
+    // figure out the file size so we can split it into chunks
+    inputFile.seekg(0, std::ios::end);
+    uint64_t fileSize = static_cast<uint64_t>(inputFile.tellg());
+    inputFile.seekg(0, std::ios::beg);
+
+    // Create UDP socket
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd < 0) {
+        perror("socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+    std::cout << "UDP socket created."  << std::endl;
+
+    int rcvbuf = 32 * 1024 * 1024;
+    if (setsockopt(sockfd, SOL_SOCKET, SO_RCVBUF, &rcvbuf, sizeof(rcvbuf)) < 0) {
+        perror("setsockopt(SO_RCVBUF)");
+    }
+
+    memset(&servaddr, 0, sizeof(servaddr));
+
+    // Fill server address info
+    servaddr.sin_family = AF_INET;              // IPv4
+    servaddr.sin_port   = htons(args.port);     // Server port
+
+    // checkk server addr
+    if (inet_pton(AF_INET, serverIP,  &servaddr.sin_addr ) <= 0) {
+        std::cerr << "Invalid server IP address: " << serverIP << std::endl;
+        close(sockfd);
+        return EXIT_FAILURE;
+    }
+
+    // connect UDP socket tyo server
+    if (connect(sockfd, reinterpret_cast<sockaddr*>(&servaddr), sizeof(servaddr)) < 0) {
+        perror("connect");
+        close(sockfd);
+        return EXIT_FAILURE;
+    }
+
+    std::cout << "UDP socket connected to " << serverIP << ":" << args.port << std::endl;
+    uint32_t chunkSize = detect_payload_size(sockfd);
+    std::cout << "Payload size: " << chunkSize << " bytes/packet (based on path MTU)." << std::endl;
+
+    uint32_t totalPackets = static_cast<uint32_t>((fileSize + chunkSize - 1) / chunkSize);
+
+    Packet packet{};
+    packet.type = PACKET_START;
+    packet.sequence = 0;
+    packet.file_size = fileSize;
+    packet.total_packets = totalPackets;
+    packet.chunk_size = chunkSize;
+
+    std::string savePath = args.save_dir.empty() ? args.file_path : args.save_dir;
+    packet.data_length = savePath.size();
+
+    if (packet.data_length == 0 || packet.data_length >= FILENAME_SIZE) {// check filename 
+        std::cerr << "Filename is too long." << std::endl;
+        close(sockfd);
+        return EXIT_FAILURE;
+    }
+
+    // copy to data
+    memcpy( packet.data,  savePath.c_str(), packet.data_length );
+    // send data
+    auto firstBitSentTime = std::chrono::high_resolution_clock::now();
+    ssize_t bytesSent = send(sockfd, &packet,  packet_wire_size(packet), 0);
+    if (bytesSent < 0) {
+        perror("send");
+        close(sockfd);
+        return EXIT_FAILURE;
+    }
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(firstBitSentTime.time_since_epoch()).count();
+    std::cout << "START packet sent." << std::endl;
+
+    // send file 
+    uint32_t packetsPerThread = (totalPackets + NUM_THREADS - 1) / NUM_THREADS;
+    std::vector<std::thread> threads;
+    for (int t = 0; t < NUM_THREADS; t++) {
+        uint32_t startSeq = static_cast<uint32_t>(t) * packetsPerThread;
+        if (startSeq >= totalPackets) break; 
+        uint32_t endSeqExclusive = std::min(startSeq + packetsPerThread, totalPackets);
+        uint64_t startOffset = static_cast<uint64_t>(startSeq) * chunkSize;
+        uint64_t endOffset = std::min(static_cast<uint64_t>(endSeqExclusive) * chunkSize, fileSize);
+        
+        threads.emplace_back(send_chunk, filename, args.ip_address, args.port, startOffset, endOffset, startSeq, t, chunkSize);
+    }
+
+    for (auto& th : threads) {
+        th.join();
+    }
+    
+    std::cout << "All " << threads.size() << " sender threads finished (" << totalPackets << " packets total)." << std::endl;
+
+    // end msg
+    Packet endPacket{}; 
+    endPacket.type = PACKET_END;
+    endPacket.sequence = totalPackets;
+    endPacket.data_length = 0;
+
+    bool endSendFailed = false;
+    for (int i = 0; i < 5; ++i) {
+        bytesSent = send(sockfd, &endPacket, packet_wire_size(endPacket), 0);
+        if (bytesSent < 0) {
+            perror("send END");
+            endSendFailed = true;
+            break;
+        }
+        std::this_thread::sleep_for( std::chrono::microseconds(50));
+    }
+
+    struct timeval controlTimeout{};
+    controlTimeout.tv_sec = 3;
+    controlTimeout.tv_usec = 0;
+
+    if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &controlTimeout, sizeof(controlTimeout)) < 0) {
+        perror("setsockopt(SO_RCVTIMEO)");
+    }
+    std::cout << "Waiting for NACK or COMPLETE..." << std::endl;
+
+    while (true) {
+        Packet response{};
+        ssize_t n = recv( sockfd, &response, sizeof(response), 0);
+
+        if (n < 0) {
+            if (errno == EWOULDBLOCK || errno == EAGAIN) {
+                std::cerr << "Control receive timeout. Resending END..." << std::endl;
+                ssize_t resendEnd = send(sockfd, &endPacket, packet_wire_size(endPacket), 0);
+
+                if (resendEnd < 0) {
+                    perror("resend END");
+                    break;
+                }
+                continue;
+            }
+            perror("recv control packet");
+            break;
+        }
+
+        if (response.type == PACKET_NACK) {
+            if (response.data_length > MAX_DATA_SIZE || response.data_length % sizeof(uint32_t) != 0) {
+                std::cerr << "Invalid NACK packet." << std::endl;
+                continue;
+            }
+
+            // Collect NACK packets before retransmit
+            std::vector<uint32_t> missingSequences;
+            
+            size_t count = response.data_length / sizeof(uint32_t);
+            size_t oldSize = missingSequences.size();
+            missingSequences.resize(oldSize + count);
+            memcpy(missingSequences.data() + oldSize, response.data, response.data_length);
+
+            struct timeval nackTimeout{};
+            nackTimeout.tv_sec = 0;
+            nackTimeout.tv_usec = 50000;
+
+            if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &nackTimeout, sizeof(nackTimeout)) < 0) {
+                perror("setsockopt(NACK timeout)");
+            }
+
+            while (true) {
+                Packet moreNacks{};
+                ssize_t more = recv(sockfd, &moreNacks, sizeof(moreNacks), 0);
+
+                if (more < 0) {
+                    if (errno == EWOULDBLOCK || errno == EAGAIN) {break;}
+                    perror("recv additional NACK"); // for debugging
+                    break;
+                }
+                if (moreNacks.type != PACKET_NACK) {
+                    continue;
+                }
+
+                if (moreNacks.data_length > MAX_DATA_SIZE || moreNacks.data_length % sizeof(uint32_t) != 0) {
+                    std::cerr << "Invalid NACK packet." << std::endl;
+                    continue;
+                }
+                size_t moreCount = moreNacks.data_length / sizeof(uint32_t);
+                size_t previousSize = missingSequences.size();
+                missingSequences.resize(previousSize + moreCount);
+                memcpy(missingSequences.data() + previousSize, moreNacks.data, moreNacks.data_length);
+            }
+            // Restore normal timeout
+            if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &controlTimeout, sizeof(controlTimeout)) < 0) {
+                perror("setsockopt(SO_RCVTIMEO)");
+            }
+
+            // handle sequence num duplicates
+            std::sort(missingSequences.begin(), missingSequences.end());
+            missingSequences.erase(std::unique(missingSequences.begin(), missingSequences.end()), missingSequences.end());
+
+            for (uint32_t seq : missingSequences) {
+                if (resend_packet(sockfd, inputFile, seq, fileSize, chunkSize)) {
+                    retransmitCount++;
+                }
+            }
+        }
+        else if (response.type == PACKET_COMPLETE) {
+            auto transferEndClock = std::chrono::high_resolution_clock::now();
+            auto transferEndTime = std::chrono::duration_cast<std::chrono::microseconds>(transferEndClock.time_since_epoch()).count();
+            double elapsedSeconds = static_cast<double>(transferEndTime - duration_us) / 1e6;
+            double throughputMbps = (static_cast<double>(fileSize) * 8.0) / elapsedSeconds / 1e6;
+
+            std::cout << "Timestamp (First bit sent): " << duration_us << " us (epoch)" << std::endl;
+            std::cout << "Retransmitted: " << retransmitCount << " packets." << std::endl;
+            std::cout << "Elapsed (client clock, START sent -> COMPLETE received): " << elapsedSeconds << " s, " << throughputMbps << " Mbps" << std::endl;
+            std::cout << "Server confirmed file transfer complete." << std::endl;
+            break;
+        }
+        else {
+            std::cerr << "Unexpected control packet type: " << response.type << std::endl;
+        }
+    }
+
+    close(sockfd);
+    return 0;
+}
