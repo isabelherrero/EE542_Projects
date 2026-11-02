@@ -1,0 +1,530 @@
+[
+  {
+    "chunk_id": "chunk_0000",
+    "source": "L07-f26.pdf",
+    "page": 1,
+    "text": "EE542 Lecture 7: Networks for Cloud Internet and Cloud Computing Y oung Cho Department of Electrical Engineering University of Southern California"
+  },
+  {
+    "chunk_id": "chunk_0001",
+    "source": "L07-f26.pdf",
+    "page": 2,
+    "text": "Note(s): United States; 2017 Further information regarding this statistic can be found on page 8. Source(s): Statista estimates; Grand View Research; ID 807581 4.3 4.4 4.4 4.5 4.5 4.6 4.7 4.8 4.9 5.1 5.3 5.4 1.4 1.3 1.4 1.4 1.5 1.4 1.5 1.4 1.5 1.4 1.4 1.5 2 2.2 2.2 2.2 2.3 2.4 2.4 2.6 2.6 2.9 3 3.12.1 2.3 2.3 2.5 2.5 2.8 3 3.1 3.4 3.5 3.8 4.1 0.5 1.5 2.5 3.5 4.5 5.5 6.5 Market in billion U.S. dollars Ethernet switch Enterprise routers WLAN Network security 6 Enterprise Network Market"
+  },
+  {
+    "chunk_id": "chunk_0002",
+    "source": "L07-f26.pdf",
+    "page": 3,
+    "text": "Network Equipment Companies 10/24/2026 Copyright USC/ISI. All rights reserved. 3"
+  },
+  {
+    "chunk_id": "chunk_0003",
+    "source": "L07-f26.pdf",
+    "page": 4,
+    "text": "Equivalent Command Line Interface 10/24/2026 Copyright USC/ISI. All rights reserved. 4"
+  },
+  {
+    "chunk_id": "chunk_0004",
+    "source": "L07-f26.pdf",
+    "page": 5,
+    "text": "T op 5 Certifications 10/24/2026 Copyright USC/ISI. All rights reserved. 5"
+  },
+  {
+    "chunk_id": "chunk_0005",
+    "source": "L07-f26.pdf",
+    "page": 6,
+    "text": "Components of Switch  Control/Management Software  Network OS  Hardware Driver  Mechanical Box  Silicon 10/24/2026 Copyright USC/ISI. All rights reserved. 6"
+  },
+  {
+    "chunk_id": "chunk_0006",
+    "source": "L07-f26.pdf",
+    "page": 7,
+    "text": "White Box 10/24/2026 Copyright USC/ISI. All rights reserved. 7  An Open Switch Architecture  Separate switch software and hardware  Openness, Flexibility and Programmability  Transparent price  Break free from vendor lock-in"
+  },
+  {
+    "chunk_id": "chunk_0007",
+    "source": "L07-f26.pdf",
+    "page": 8,
+    "text": "White Box Market Report Attribute Details Market size value in 2020 USD 8.8 billion Revenue forecast in 2025 USD 25.5 billion Growth Rate 22.0% from 2018 to 2025 Historical data 2015 - 2016 Forecast period 2018 - 2025 10/24/2026 Copyright USC/ISI. All rights reserved. 8"
+  },
+  {
+    "chunk_id": "chunk_0008",
+    "source": "L07-f26.pdf",
+    "page": 9,
+    "text": "Bare Metal Server vs. Switch  BIOS + PXE → U-Boot + ONIE  Open Network Install Environment ◦ Supported hardware preloaded with ONIE ◦ ONIE available on GitHub 9 bare metal server operating system app app app BIOS and PXE bare metal switch operating system app app app U-Boot and ONIE"
+  },
+  {
+    "chunk_id": "chunk_0009",
+    "source": "L07-f26.pdf",
+    "page": 10,
+    "text": "Open Source Networking Switch © 2016 Edgecore Networks. All rights reserved | www.edge-core.com ApplicationsManagementSoftware Network OS Drivers Box Silicon Traditional Switch Open Source Networking Stack Network OS Control Plane Management Plane Bare Metal White Box Legacy Internal Switch Closed Product “Black Box” Orig Deisgn IC Orig Design Box Vendor SW Orig Deisgn IC Orig Design Box Single Vendor Vendor Agnostic"
+  },
+  {
+    "chunk_id": "chunk_0010",
+    "source": "L07-f26.pdf",
+    "page": 11,
+    "text": "Open Networking Software  Cumulus Network (Cumulus Linux) ◦ Linux NOS at web-scale ◦ Configuration and Management T ools  Big Switch Networks (SwitchLight) ◦ Big Monitoring Fabric ◦ Big Cloud Fabric via centralized controller  Pica8 (PicOS) ◦ Hybrid Networking: OpenFlow 1.3/1.4 ◦ Native L2 and L3 features  IP Infusion (OcNOS) ◦ Full function L2/L3 with MPLS/VPLS, Carrier Ethernet ◦ OAM and telecom features  OpenSwitch ◦ Full function, open-source NOS  SnapRoute FlexSwitch ◦ L2 and L3"
+  },
+  {
+    "chunk_id": "chunk_0011",
+    "source": "L07-f26.pdf",
+    "page": 11,
+    "text": "open-source NOS  SnapRoute FlexSwitch ◦ L2 and L3 protocol suite  Open Network Linux ◦ OCP reference OS for switches  Open Network Foundation (CORD) ◦ OpenFlow Phy and Open VSwitches ◦ ONOS OpenFlow controller with BGP  Open Compute Project ◦ ONIE: Universal NOS Loader ◦ Switch Abstraction Interface (SAI)  Open Optical Monitoring API ◦ Open Networking in Cloud (SONiC) ◦ Network OS with full L3 routing ◦ Microsoft and co-contributors to OCP 10/24/2026 Copyright USC/ISI. All rights reserved."
+  },
+  {
+    "chunk_id": "chunk_0012",
+    "source": "L07-f26.pdf",
+    "page": 11,
+    "text": "10/24/2026 Copyright USC/ISI. All rights reserved. 11"
+  },
+  {
+    "chunk_id": "chunk_0013",
+    "source": "L07-f26.pdf",
+    "page": 12,
+    "text": "Example: Switch Light Architecture ONL Linux Kernel ASIC LibC on Debian Wheezy Base Distribution ASIC SDK SSH Fan Control NTP Syslog SNMP CLI Indigo Indigo/ASIC Driver OpenFlow Agent Loxi Open Network Linux BSN Open BSN Closed 3rd Party Closed Source Switch Light OS ZTN Loader I2C GPIO Device Trees Switch Light is our Indigo OpenFlow Agent running on Open Network Linux on x86 or ASIC-based hardware. Big Network Controllers"
+  },
+  {
+    "chunk_id": "chunk_0014",
+    "source": "L07-f26.pdf",
+    "page": 13,
+    "text": "Example: CORD Architecture R,E,M- Access Metro Router ONOS Controller Cluster vRouter Control vOLT Control Overlay Control Underlay Control Multicast Control XOS (Orchestrator) vSG vSG vSG VNF VNF VNFVNF VNF VNFVNF VNF VNF VNFVNF VNF OVS OVS OVS OVS OVS 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X 6712-32X CORD-Fabric Open Source SDN-based CLOS Networking 6712-32X 6712-32X 13 Residential Mobile Enterprise Underlay Overlay"
+  },
+  {
+    "chunk_id": "chunk_0015",
+    "source": "L07-f26.pdf",
+    "page": 13,
+    "text": "13 Residential Mobile Enterprise Underlay Overlay Central Office Re-architected as a Datacenter (CORD)"
+  },
+  {
+    "chunk_id": "chunk_0016",
+    "source": "L07-f26.pdf",
+    "page": 14,
+    "text": "Components of CORD 10/24/2026 Copyright USC/ISI. All rights reserved. 14"
+  },
+  {
+    "chunk_id": "chunk_0017",
+    "source": "L07-f26.pdf",
+    "page": 15,
+    "text": "Building Blocks of CORD  OpenStack ◦ Cluster Management Suite ◦ Internet as a service (IaaS) ◦ Create and Provision VMs and VNet  Open Network OS (ONOS) ◦ Collection of Control App ◦ Manage SW and HW Switches  Everything OS (XOS) ◦ A service control plane on top of back-end service ◦ VM-hosted VNFs, container-based services, and SDN control ◦ Everything as a service (XaaS)  Docker ◦ Deploy and Interconnect Services ◦ Deploy CORD 10/24/2026 Copyright USC/ISI. All rights reserved. 15"
+  },
+  {
+    "chunk_id": "chunk_0018",
+    "source": "L07-f26.pdf",
+    "page": 16,
+    "text": "Example: Open Network Linux  A Linux distribution for bare metal switches  Open-sourced build scripts, drivers from Switch Light  Part of Open Compute Project (OCP)  Project goals ◦ Improve perception/de-risk bare metal ◦ “Crowd source” larger Switch Light HCL ◦ Released mid-January: Initial results  Strong community response from ODMs, OCP ◦ Accton self-supporting three new boxes, more ODMs interested ◦ Other vendors investigating ONL for their own purposes ◦ Info: http://opennetlinux.org"
+  },
+  {
+    "chunk_id": "chunk_0019",
+    "source": "L07-f26.pdf",
+    "page": 16,
+    "text": "their own purposes ◦ Info: http://opennetlinux.org – under construction"
+  },
+  {
+    "chunk_id": "chunk_0020",
+    "source": "L07-f26.pdf",
+    "page": 17,
+    "text": "ONL – Supported Hardware • ONL Support is Pre-cursor to Switch Light Support • Working on OCP box from Interface Masters with x86 support"
+  },
+  {
+    "chunk_id": "chunk_0021",
+    "source": "L07-f26.pdf",
+    "page": 18,
+    "text": "Open Networking History 10/24/2026 Copyright USC/ISI. All rights reserved. 18"
+  },
+  {
+    "chunk_id": "chunk_0022",
+    "source": "L07-f26.pdf",
+    "page": 19,
+    "text": "Break/Logistics  T eams of 3 Students  8 T eams  GitHub Logs ◦ Submit with the PDF  Video Log ◦ Must use phone cameras (not online) ◦ Answer all questions ◦ All members need to speak 10/24/2026 Copyright USC/ISI. All rights reserved. 19"
+  },
+  {
+    "chunk_id": "chunk_0023",
+    "source": "L07-f26.pdf",
+    "page": 20,
+    "text": "SmartNICs 10/24/2026 Copyright USC/ISI. All rights reserved. 20"
+  },
+  {
+    "chunk_id": "chunk_0024",
+    "source": "L07-f26.pdf",
+    "page": 21,
+    "text": "ASIC - based SmartNICs 10/24/2026 Copyright USC/ISI. All rights reserved. 21"
+  },
+  {
+    "chunk_id": "chunk_0025",
+    "source": "L07-f26.pdf",
+    "page": 22,
+    "text": "Reconfig HW based SmartNICs 10/24/2026 Copyright USC/ISI. All rights reserved. 22"
+  },
+  {
+    "chunk_id": "chunk_0026",
+    "source": "L07-f26.pdf",
+    "page": 23,
+    "text": "SoC - based SmartNICs 10/24/2026 Copyright USC/ISI. All rights reserved. 23"
+  },
+  {
+    "chunk_id": "chunk_0027",
+    "source": "L07-f26.pdf",
+    "page": 24,
+    "text": "Which SmartNIC ??  FPGA-based SmartNICs ◦ Lots of excitement (started around 2015) ◦ Acquisition of Altera (#2 FPGA company) by Intel - $16.7 billion in 2015 ◦ Acquisition of Xilinx (#1 FPGA company) by AMD - $50 billion in 2022  BUT… ◦ Mixing Hardware and Software is NOT Easy ◦ Hardware Companies are T errible with Software Interface ◦ Altera is being spun off from Intel 2025 10/24/2026 Copyright USC/ISI. All rights reserved. 24"
+  },
+  {
+    "chunk_id": "chunk_0028",
+    "source": "L07-f26.pdf",
+    "page": 25,
+    "text": "System - on - Chip based SmartNICs  Network Processor Rebranded ◦ The concept has been around for a while ◦ Timing was bad when it came out ◦ The right time is now  SmartNIC Purpose ◦ High Performance Network Processing ◦ Several General Purpose Processors ◦ FIFOs and Memories ◦ Network Offload Applications 10/24/2026 Copyright USC/ISI. All rights reserved. 25"
+  },
+  {
+    "chunk_id": "chunk_0029",
+    "source": "L07-f26.pdf",
+    "page": 26,
+    "text": "12/1/01 Network Processors 26 Intel IXP 1200 (late 1990s) ◼ StrongARM processing core ◼ Microengines – CPUs ◼ Input and Output ❑ PCI ❑ SDRAM ❑ SRAM ❑ IX : PCI-like packet bus ◼ On chip FIFOs ❑ 16 entry 64B each ◼ Term: Network Processor"
+  },
+  {
+    "chunk_id": "chunk_0030",
+    "source": "L07-f26.pdf",
+    "page": 27,
+    "text": "12/1/01 Network Processors 27 IXP 1200 Microengine ◼ 4 hardware contexts ❑ Single issue processor ❑ Explicit optional context switch on SRAM access ◼ Registers ❑ All are single ported ❑ Separate GPR ❑ 1536 registers total ◼ 32-bit ALU ❑ Can access GPR or XFER registers ◼ Shared hash unit ❑ 1/2/3 values – 48b/64b ❑ For IP routing hashing ◼ Standard 5 stage pipe ◼ 4KB SRAM instruction store – not a cache! ◼ Barrel shifter TECHNOLOGY SOLD OFF in 2007"
+  },
+  {
+    "chunk_id": "chunk_0031",
+    "source": "L07-f26.pdf",
+    "page": 28,
+    "text": "BlueField DPU (2025) 10/24/2026 Copyright USC/ISI. All rights reserved. 28"
+  },
+  {
+    "chunk_id": "chunk_0032",
+    "source": "L07-f26.pdf",
+    "page": 29,
+    "text": "IXP vs BlueField 10/24/2026 Copyright USC/ISI. All rights reserved. 29"
+  },
+  {
+    "chunk_id": "chunk_0033",
+    "source": "L07-f26.pdf",
+    "page": 30,
+    "text": "10/24/2026 Copyright USC/ISI. All rights reserved. 30"
+  },
+  {
+    "chunk_id": "chunk_0034",
+    "source": "L07-f26.pdf",
+    "page": 31,
+    "text": "The Trend  FPGA-based SmartNICs ◦ Likely persist ◦ Not easy to program ◦ Intel and AMD are hardware companies  DPU-based SmartNIC ◦ Likely prevail ◦ Ease of programming ◦ Nvidia acquired Mellanox (Infiniband) ◦ Past record of success with GPU ◦ Integration of successful GPU compute engines 10/24/2026 Copyright USC/ISI. All rights reserved. 31"
+  },
+  {
+    "chunk_id": "chunk_0035",
+    "source": "L07-f26.pdf",
+    "page": 32,
+    "text": "Remote Direct Memory Access  RDMA enable Network ◦ Low and stable latency, e.g., < 10us; High throughput, e.g. , 100Gbps; Low CPU overhead ◦ Widely deployed in companies such as Microsoft, Alibaba, ByteDance  Network stack in NIC ◦ Processing in dedicated NIC hardware ◦ Bypass kernel ◦ Zero copy 32"
+  },
+  {
+    "chunk_id": "chunk_0036",
+    "source": "L07-f26.pdf",
+    "page": 33,
+    "text": "Remote Direct Memory Access ❖Remote –data transfers between nodes in a network ❖Direct –no Operating System Kernel involvement in transfers –everything about a transfer offloaded onto Interface Card ❖Memory –transfers between user space application virtual memory –no extra copying or buffering ❖Access –send, receive, read, write, atomic operations"
+  },
+  {
+    "chunk_id": "chunk_0037",
+    "source": "L07-f26.pdf",
+    "page": 34,
+    "text": "RDMA Benefits ❖High throughput ❖Low latency ❖High messaging rate ❖Low CPU utilization ❖Low memory bus contention ❖Message boundaries preserved ❖Asynchronous operation"
+  },
+  {
+    "chunk_id": "chunk_0038",
+    "source": "L07-f26.pdf",
+    "page": 35,
+    "text": "RDMA Technologies ❖InfiniBand – (41.8% of top 500 supercomputers) – SDR 4x – 8 Gbps – DDR 4x – 16 Gbps – QDR 4x – 32 Gbps – FDR 4x – 54 Gbps ❖iWarp – internet Wide Area RDMA Protocol – 10 Gbps ❖RoCE – RDMA over Converged Ethernet – 10 Gbps – 40 Gbps"
+  },
+  {
+    "chunk_id": "chunk_0039",
+    "source": "L07-f26.pdf",
+    "page": 36,
+    "text": "Uniqueness of RDMA stack 36  Network stack on RDMA NIC (RNIC)  Maintain massive connection- related states on RNIC  Memory-access related  page size, WQ length, …  Networking related  congestion window, recv next, IP address, … e.g., MLX maintains 256B states for each RDMA connection (/include/linux/mlx4/qp.h mlx4_qp_context) Still growing…"
+  },
+  {
+    "chunk_id": "chunk_0040",
+    "source": "L07-f26.pdf",
+    "page": 37,
+    "text": "Similarities between TCP and RDMA ❖Both utilize the client-server model ❖Both require a connection for reliable transport ❖Both provide a reliable transport mode – TCP provides a reliable in-order sequence of bytes – RDMA provides a reliable in-order sequence of messages"
+  },
+  {
+    "chunk_id": "chunk_0041",
+    "source": "L07-f26.pdf",
+    "page": 38,
+    "text": "How RDMA differs from TCP/IP ❖“zero copy” – data transferred directly from virtual memory on one node to virtual memory on another node ❖“kernel bypass” – no operating system involvement during data transfers ❖asynchronous operation – threads not blocked during I/O transfers"
+  },
+  {
+    "chunk_id": "chunk_0042",
+    "source": "L07-f26.pdf",
+    "page": 39,
+    "text": "virtual memory allocate add to tables sleep wakeupaccess TCP buffers metadata control copy data packets ACKs TCP RECV() blocked status recv() USER OPERATING SYSTEM NIC WIRE"
+  },
+  {
+    "chunk_id": "chunk_0043",
+    "source": "L07-f26.pdf",
+    "page": 40,
+    "text": "allocate access metadata control data packets ACK RDMA RECV() status recv() USER CHANNEL ADAPTER WIRE register poll_cq() recv queue completion queue . . . . . . virtual memory parallel activity"
+  },
+  {
+    "chunk_id": "chunk_0044",
+    "source": "L07-f26.pdf",
+    "page": 41,
+    "text": "Modern RDMA • Several major vendors: Qlogic (Infiniband), Mellanox, Intel, Chelsio, others • RDMA has evolved from the U/Net approach to have three “modes” • Infiniband (Qlogic PSM API): one-sided, no “connection setup” • More standard: “qpair” on each side, plus a binding mechanism (one queue is for the sends, or receives, and the other is for sensing completions) • One-sided RDMA: after some setup, allows one side to read or write to the memory managed by the other side, but pre-permission is"
+  },
+  {
+    "chunk_id": "chunk_0045",
+    "source": "L07-f26.pdf",
+    "page": 41,
+    "text": "managed by the other side, but pre-permission is required • RDMA + VLAN: needed in data centers with multitenancy"
+  },
+  {
+    "chunk_id": "chunk_0046",
+    "source": "L07-f26.pdf",
+    "page": 42,
+    "text": "Software RDMA Drivers ❖Softiwarp – www.zurich.ibm.com/sys/rdma – open source kernel module that implements iWARP protocols on top of ordinary kernel TCP sockets – interoperates with hardware iWARP at other end of wire ❖Soft RoCE – www.systemfabricworks.com/downloads/roce – open source IB transport and network layers in software over ordinary Ethernet – interoperates with hardware RoCE at other end of wire"
+  },
+  {
+    "chunk_id": "chunk_0047",
+    "source": "L09-f26.pdf",
+    "page": 1,
+    "text": "EE 542 Lecture 9: Cloud Computing Internet and Cloud Computing Y oung Cho Department of Electrical Engineering University of Southern California 1"
+  },
+  {
+    "chunk_id": "chunk_0048",
+    "source": "L09-f26.pdf",
+    "page": 2,
+    "text": "Industry • At Google: – Index building for Google Search – Article clustering for Google News – Statistical machine translation • At Yahoo!: – Index building for Yahoo! Search – Spam detection for Yahoo! Mail • At Facebook: – Data mining – Ad optimization – Spam detection"
+  },
+  {
+    "chunk_id": "chunk_0049",
+    "source": "L09-f26.pdf",
+    "page": 3,
+    "text": "Research  Analyzing Wikipedia conflicts (PARC)  Natural language processing (CMU)  Climate simulation (Washington)  Bioinformatics (Maryland)  Particle physics (Nebraska)  Cancer Research"
+  },
+  {
+    "chunk_id": "chunk_0050",
+    "source": "L09-f26.pdf",
+    "page": 4,
+    "text": "Cloud Goals • Scalability to large data volumes –Scan 100 TB on 1 node @ 50 MB/s = 24 days –Scan on 1000-node cluster = 35 minutes • Cost-efficiency –Commodity nodes (cheap, but unreliable) –Commodity network (low bandwidth) –Automatic fault-tolerance (fewer admins) –Easy to use (fewer programmers)"
+  },
+  {
+    "chunk_id": "chunk_0051",
+    "source": "L09-f26.pdf",
+    "page": 5,
+    "text": "Challenges of Cloud Environment  Cheap nodes fail, especially when you have many ◦ Mean time between failures for 1 node = 3 years ◦ MTBF for 1000 nodes = 1 day ◦ Solution: Build fault tolerance into system  Commodity network = low bandwidth ◦ Solution: Push computation to the data  Programming distributed systems is hard ◦ Solution: Restricted programming model: users write data-parallel “map” and “reduce” functions, system handles work distribution and failures"
+  },
+  {
+    "chunk_id": "chunk_0052",
+    "source": "L09-f26.pdf",
+    "page": 6,
+    "text": "Essential Characteristics  On-Demand Self Service: ◦ A consumer can unilaterally provision  Heterogeneous Access: ◦ Capabilities are available over the network  Resource Pooling: ◦ Resources are pooled to serve consumers ◦ Resources dynamically assigned  Measured Service: ◦ Automatically control and optimize resources ◦ Deterministic computing platform. 6"
+  },
+  {
+    "chunk_id": "chunk_0053",
+    "source": "L09-f26.pdf",
+    "page": 7,
+    "text": "Service Models  Cloud Software as a Service (SaaS): ◦ Examples: Google Apps, Salesforce, Nivio, Learn.com.  Cloud Platform as a Service (PaaS): ◦ Examples: Windows Azure, Google App.  Cloud Infrastructure as a Service (IaaS): ◦ Examples: Amazon EC2, GoGrid, iland, Rackspace Cloud Servers, ReliaCloud. 7"
+  },
+  {
+    "chunk_id": "chunk_0054",
+    "source": "L09-f26.pdf",
+    "page": 8,
+    "text": "Types of Cloud"
+  },
+  {
+    "chunk_id": "chunk_0055",
+    "source": "L09-f26.pdf",
+    "page": 9,
+    "text": "Advantages of Cloud Computing ⚫ Cloud computing do not need high quality equipment for user, and it is very easy to use. ⚫ Provides dependable and secure data storage center. ⚫ Reduce run time and response time. ⚫ Cloud is a large resource pool that you can buy on-demand service. ⚫ Scale of cloud can extend dynamically providing nearly infinite possibility for users to use internet."
+  },
+  {
+    "chunk_id": "chunk_0056",
+    "source": "L09-f26.pdf",
+    "page": 10,
+    "text": "Infrastructure as a Service • On demand resources • No up-front commitment • Pay for what you use • No maintenance • Measured service • Scalability • Reliability Diagram Source: Wikipedia"
+  },
+  {
+    "chunk_id": "chunk_0057",
+    "source": "L09-f26.pdf",
+    "page": 11,
+    "text": "Example: AWS Elastic Compute Cloud (EC 2 ) ⚫ Web service that provides scalable resource ⚫ Provides pay as-you-go compute capacity ⚫ Elastic - scales in both direction ⚫ Components ⚫ AMI & Instance ⚫ Region & Zones ⚫ Storage ⚫ Networking and Security ⚫ Monitoring ⚫ Auto Scaling ⚫ Load Balancer"
+  },
+  {
+    "chunk_id": "chunk_0058",
+    "source": "L09-f26.pdf",
+    "page": 12,
+    "text": "Amazon Machine Images (AMI) ⚫ Is an immutable image of a system ⚫ Operating System, Application Server, and Applications ⚫ Instance is an AMI running on virtual servers ⚫ Software configuration templates ⚫ Type offers different compute and memory facilities ⚫ One can launch multiple instances"
+  },
+  {
+    "chunk_id": "chunk_0059",
+    "source": "L09-f26.pdf",
+    "page": 14,
+    "text": "AWS Storage  Amazon EC2 provides three type of storage option ◦ Amazon EBS ◦ Amazon S3 ◦ Instance Storage Diagram Source: http://docs.aws.amazon.com"
+  },
+  {
+    "chunk_id": "chunk_0060",
+    "source": "L09-f26.pdf",
+    "page": 15,
+    "text": "Elastic Block Store(EBS) volume ⚫ An EBS volume is a read/write disk that can be created by an AMI and mounted by an instance. ⚫ Volumes are suited for applications that require a database, a file system, or access to raw block-level storage."
+  },
+  {
+    "chunk_id": "chunk_0061",
+    "source": "L09-f26.pdf",
+    "page": 16,
+    "text": "Amazon S 3 ⚫ Simple Storage Service ⚫ Service Oriented Architecture ⚫ Provides online storage using web services. ⚫ Allows read, write and delete permissions on objects. ⚫ Specific messaging interface"
+  },
+  {
+    "chunk_id": "chunk_0062",
+    "source": "L09-f26.pdf",
+    "page": 17,
+    "text": "Amazon SimpleDB ⚫ Highly available ⚫ Flexible, and scalable ⚫ Non-relational data store ⚫ Offloads the work of database administration. ⚫ Creates and manages multiple geographically distributed replicas ⚫ Fees based on resources consumed in data storage and query rates"
+  },
+  {
+    "chunk_id": "chunk_0063",
+    "source": "L09-f26.pdf",
+    "page": 18,
+    "text": "AWS Networking and Security  Instances can be launched on one of the two platforms ◦ EC2-Classic ◦ EC2-Virtual Private Cloud  T wo addresses a private address and a public IP address. ◦ A replacement instance has a different public IP address.  Instance IP address is dynamic. ◦ new IP address is assigned every time instance is launched ◦ Elastic IP addresses (static IP addresses) for dynamic cloud ◦ Remap the Elastic IP to new instance to mask failure  Separate pool for EC2-Classic and VPC ◦"
+  },
+  {
+    "chunk_id": "chunk_0064",
+    "source": "L09-f26.pdf",
+    "page": 18,
+    "text": "failure  Separate pool for EC2-Classic and VPC ◦ Security Groups to access control to instance"
+  },
+  {
+    "chunk_id": "chunk_0065",
+    "source": "L09-f26.pdf",
+    "page": 19,
+    "text": "AWS Monitor and Maintenance  Monitor statistics of instances and EBS ◦ CloudWatch  Automatically scales amazon EC2 capacity up and down based on rules ◦ Add and remove compute resource based on demand ◦ Suitable for businesses experiencing variability in usage  Distribute incoming traffic across multiple instances ◦ Elastic Load Balancing"
+  },
+  {
+    "chunk_id": "chunk_0066",
+    "source": "L09-f26.pdf",
+    "page": 20,
+    "text": "Main Uses of Cloud  Embarrassingly Parallelizable ◦ Search Engines ◦ Social Network ◦ E-commerce ◦ Artificial Intelligence  Programming Model ◦ Map-Reduce ◦ Redundant Storage ◦ Inexact Synchronizations ◦ Distributed Multiply-Accumulate 10/24/2026 Internetworking and Distributed Systems 20"
+  },
+  {
+    "chunk_id": "chunk_0067",
+    "source": "L09-f26.pdf",
+    "page": 21,
+    "text": "Hadoop  Map-Reduce Solution  Apache top-level project ◦ open-source implementation ◦ scalable, distributed computing/storage. ◦ large-scale computation and data processing ◦ designed for a network of commodity hardware.  Goal: Process big data with reasonable cost and time"
+  },
+  {
+    "chunk_id": "chunk_0068",
+    "source": "L09-f26.pdf",
+    "page": 22,
+    "text": "Google Origins 2003 2004 2006"
+  },
+  {
+    "chunk_id": "chunk_0069",
+    "source": "L09-f26.pdf",
+    "page": 23,
+    "text": "Hadoop Use  Hadoop is in use to handle big data: ◦ Yahoo!’s Search Webmap runs on 10,000 core Linux cluster and powers Yahoo! Web search ◦ FB’s Hadoop cluster hosts 100+ PB of data (July, 2012) & growing at ½ PB/day (Nov, 2012) ◦ Amazon and Netflix ◦ NY Times was dynamically generating PDFs of articles from 1851- 1922  Wanted to pre-generate & statically serve articles to improve performance  Using Hadoop + MapReduce running on EC2 / S3, converted 4TB of TIFFs into 11 million PDF articles in"
+  },
+  {
+    "chunk_id": "chunk_0070",
+    "source": "L09-f26.pdf",
+    "page": 23,
+    "text": "4TB of TIFFs into 11 million PDF articles in 24 hrs  Key Applications ◦ Advertisement (Mining user behavior to generate recommendations) ◦ Searches (group related documents) ◦ Security (search for uncommon patterns)"
+  },
+  {
+    "chunk_id": "chunk_0071",
+    "source": "L09-f26.pdf",
+    "page": 24,
+    "text": "Hadoop Concept (MapReduce)  Programming model for data-intensive computing on commodity clusters  Pioneered by Google ◦ Processes 20 PB of data per day  Popularized by Apache Hadoop project ◦ Used by Yahoo!, Facebook, Amazon, …"
+  },
+  {
+    "chunk_id": "chunk_0072",
+    "source": "L09-f26.pdf",
+    "page": 25,
+    "text": "MapReduce Programming Model  Data type: key-value records  Map function: (Kin, Vin) ➔ list(Kinter, Vinter)  Reduce function: (Kinter, list(Vinter)) ➔ list(Kout, Vout)"
+  },
+  {
+    "chunk_id": "chunk_0073",
+    "source": "L09-f26.pdf",
+    "page": 26,
+    "text": "Example: Word Count def mapper(line): foreach word in line.split(): output(word, 1) def reducer(key, values): output(key, sum(values))"
+  },
+  {
+    "chunk_id": "chunk_0074",
+    "source": "L09-f26.pdf",
+    "page": 27,
+    "text": "Word Count Execution the quick brown fox the fox ate the mouse how now brown cow Map Map Map Reduce Reduce brown, 2 fox, 2 how, 1 now, 1 the, 3 ate, 1 cow, 1 mouse, 1 quick, 1 the, 1 brown, 1 fox, 1 quick, 1 the, 1 fox, 1 the, 1 how, 1 now, 1 brown, 1 ate, 1 mouse, 1 cow, 1 Input Map Shuffle & Sort Reduce Output"
+  },
+  {
+    "chunk_id": "chunk_0075",
+    "source": "L09-f26.pdf",
+    "page": 28,
+    "text": "An Optimization: The Combiner  Local reduce function for repeated keys produced by same map  For associative ops. like sum, count, max  Decreases amount of intermediate data  Example: local counting for Word Count: def combiner(key, values): output(key, sum(values))"
+  },
+  {
+    "chunk_id": "chunk_0076",
+    "source": "L09-f26.pdf",
+    "page": 29,
+    "text": "Word Count with Combiner the quick brown fox the fox ate the mouse how now brown cow Map Map Map Reduce Reduce brown, 2 fox, 2 how, 1 now, 1 the, 3 ate, 1 cow, 1 mouse, 1 quick, 1 the, 1 brown, 1 fox, 1 quick, 1 the, 2 fox, 1 how, 1 now, 1 brown, 1 ate, 1 mouse, 1 cow, 1 Input Map Shuffle & Sort Reduce Output"
+  },
+  {
+    "chunk_id": "chunk_0077",
+    "source": "L09-f26.pdf",
+    "page": 30,
+    "text": "1 . Search • Input: (lineNumber, line) records • Output: lines matching a given pattern • Map: if(line matches pattern): output(line) • Reduce: identity function –Alternative: no reducer (map-only job)"
+  },
+  {
+    "chunk_id": "chunk_0078",
+    "source": "L09-f26.pdf",
+    "page": 31,
+    "text": "2 . Sort  Input: (key, value) records  Output: same records, sorted by key  Map: identity function  Reduce: identify function  Trick: Pick partitioning function p such that k1 < k2 => p(k1) < p(k2) pig sheep yak zebra aardvark ant bee cow elephant Map Map Map Reduce Reduce ant, bee zebra aardvark, elephant cow pig sheep, yak [A-M] [N-Z]"
+  },
+  {
+    "chunk_id": "chunk_0079",
+    "source": "L09-f26.pdf",
+    "page": 32,
+    "text": "3 . Inverted Index • Input: (filename, text) records • Output: list of files containing each word • Map: foreach word in text.split(): output(word, filename) • Combine: uniquify filenames for each word • Reduce: def reduce(word, filenames): output(word,sort(filenames))"
+  },
+  {
+    "chunk_id": "chunk_0080",
+    "source": "L09-f26.pdf",
+    "page": 33,
+    "text": "Inverted Index Example afraid, (12th.txt) be, (12th.txt, hamlet.txt) greatness, (12th.txt) not, (12th.txt, hamlet.txt) of, (12th.txt) or, (hamlet.txt) to, (hamlet.txt) to be or not to be hamlet.txt be not afraid of greatness 12th.txt to, hamlet.txt be, hamlet.txt or, hamlet.txt not, hamlet.txt be, 12th.txt not, 12th.txt afraid, 12th.txt of, 12th.txt greatness, 12th.txt"
+  },
+  {
+    "chunk_id": "chunk_0081",
+    "source": "L09-f26.pdf",
+    "page": 34,
+    "text": "Word Count using Hadoop import sys for line in sys.stdin: for word in line.split(): print(word.lower() + \"\\t\" + 1) import sys counts = {} for line in sys.stdin: word, count = line.split(\"\\t\") dict[word] = dict.get(word, 0) + int(count) for word, count in counts: print(word.lower() + \"\\t\" + 1) Mapper.py: Reducer.py:"
+  },
+  {
+    "chunk_id": "chunk_0082",
+    "source": "L09-f26.pdf",
+    "page": 35,
+    "text": "Hadoop versus Spark 10/24/2026 Internetworking and Distributed Systems 35"
+  },
+  {
+    "chunk_id": "chunk_0083",
+    "source": "L09-f26.pdf",
+    "page": 36,
+    "text": "Cloud Data Platform Uses 10/24/2026 Internetworking and Distributed Systems 36 Spark (~65%) Hadoop (~15%) Others (~15%)"
+  },
+  {
+    "chunk_id": "chunk_0084",
+    "source": "L09-f26.pdf",
+    "page": 37,
+    "text": "T op 5 Cloud Data Platforms 10/24/2026 Internetworking and Distributed Systems 37 30% 25% 20% 15% 10% Spark Spark"
+  },
+  {
+    "chunk_id": "chunk_0085",
+    "source": "L09-f26.pdf",
+    "page": 38,
+    "text": "Facebook  Design requirements: ◦ Integrate email, SMS ◦ chat messages ◦ Strong control ◦ Stringent latency & uptime  System requirements ◦ High write throughput ◦ Cheap, elastic storage ◦ Low latency ◦ High consistency ◦ Disk-efficient read"
+  },
+  {
+    "chunk_id": "chunk_0086",
+    "source": "L09-f26.pdf",
+    "page": 39,
+    "text": "Facebook  Hadoop + HBase as foundations ◦ Improve & adapt HDFS and HBase to scale to FB’s workload and operational considerations ◦ NameNode is Single point of failure & failover times are at least 20 minutes  AvatarNode ◦ Eliminates single point of failure makes HDFS safe to deploy even with 24/7 uptime requirement ◦ Performance improvements for realtime workload: RPC timeout. ◦ Rather fail fast and try a different DataNode"
+  },
+  {
+    "chunk_id": "chunk_0087",
+    "source": "L09-f26.pdf",
+    "page": 40,
+    "text": "Uses of Cloud  Current Applications ◦ Embarrassingly Parallelizable Applications  Search Engines, Social Networks, E-commerce ◦ Methodology: Map-Reduce  Emerging Applications ◦ Machine Learning – GPU and RDMA ◦ Super Computing – RDMA ◦ Network Security – Security Chips? FPGA?? 10/24/2026 Internetworking and Distributed Systems 40"
+  }
+]

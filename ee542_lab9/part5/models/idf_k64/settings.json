@@ -1,0 +1,6 @@
+{
+  "n": 100,
+  "k": 64,
+  "stopwords": false,
+  "weighting": "idf"
+}

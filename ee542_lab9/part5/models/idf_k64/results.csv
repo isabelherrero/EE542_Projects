@@ -1,0 +1,11 @@
+question,hit,reciprocal_rank,rank
+What are the benefits of RDMA?,0,0,0
+What does kernel bypass mean for RDMA?,0,0,0
+What is a white box network switch?,0,0,0
+What is Hadoop used for?,1,0.25,4
+What are the goals of cloud computing?,0,0,0
+What is Amazon Elastic Block Store (EBS)?,1,1.0,1
+What are the advantages of cloud computing?,1,0.3333333333333333,3
+What are software RDMA drivers?,1,1.0,1
+What is the MapReduce programming model?,1,0.25,4
+What is an Amazon Machine Image (AMI)?,1,1.0,1
