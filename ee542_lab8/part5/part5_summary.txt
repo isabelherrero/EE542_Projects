@@ -1,0 +1,6 @@
+Received bytes match originals: True
+Pinned H2D copy size: 2408448 bytes
+Pinned H2D copy time: 0.386017 ms
+Pinned H2D bandwidth: 6.239 GB/s
+Maximum logit difference: 0.000000
+Top-1 agreement: 100.00%

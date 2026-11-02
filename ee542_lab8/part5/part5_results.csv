@@ -1,0 +1,17 @@
+Frame,Original_class,Received_class,Match,Predicted_label
+0,818,818,True,spotlight
+1,392,392,True,rock beauty
+2,818,818,True,spotlight
+3,818,818,True,spotlight
+4,644,644,True,matchstick
+5,644,644,True,matchstick
+6,111,111,True,nematode
+7,644,644,True,matchstick
+8,644,644,True,matchstick
+9,818,818,True,spotlight
+10,644,644,True,matchstick
+11,111,111,True,nematode
+12,111,111,True,nematode
+13,644,644,True,matchstick
+14,549,549,True,envelope
+15,854,854,True,theater curtain

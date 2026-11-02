@@ -1,0 +1,36 @@
+Configuring library
+Compiling src/doca_verbs_dev.cpp -> obj/doca_verbs_dev.o
+Compiling src/doca_verbs_qp.cpp -> obj/doca_verbs_qp.o
+Compiling src/doca_verbs_cq.cpp -> obj/doca_verbs_cq.o
+Compiling src/doca_verbs_device_attr.cpp -> obj/doca_verbs_device_attr.o
+Compiling src/doca_verbs_umem.cpp -> obj/doca_verbs_umem.o
+Compiling src/doca_verbs_srq.cpp -> obj/doca_verbs_srq.o
+Compiling src/doca_verbs_uar.cpp -> obj/doca_verbs_uar.o
+Compiling src/doca_gpunetio.cpp -> obj/doca_gpunetio.o
+Compiling src/doca_gpunetio_log.cpp -> obj/doca_gpunetio_log.o
+Compiling src/doca_gpunetio_high_level.cpp -> obj/doca_gpunetio_high_level.o
+Compiling src/doca_gpunetio_gdrcopy.cpp -> obj/doca_gpunetio_gdrcopy.o
+Compiling src/doca_gpunetio_signal_map.cpp -> obj/doca_gpunetio_signal_map.o
+Compiling src/doca_gpunetio_sdk_wrapper.cpp -> obj/doca_gpunetio_sdk_wrapper.o
+Compiling src/doca_verbs_dev_sdk_wrapper.cpp -> obj/doca_verbs_dev_sdk_wrapper.o
+Compiling src/doca_verbs_umem_sdk_wrapper.cpp -> obj/doca_verbs_umem_sdk_wrapper.o
+Compiling src/doca_verbs_uar_sdk_wrapper.cpp -> obj/doca_verbs_uar_sdk_wrapper.o
+Compiling src/doca_verbs_cq_sdk_wrapper.cpp -> obj/doca_verbs_cq_sdk_wrapper.o
+Compiling src/doca_verbs_qp_sdk_wrapper.cpp -> obj/doca_verbs_qp_sdk_wrapper.o
+Compiling src/doca_verbs_utils.cpp -> obj/doca_verbs_utils.o
+Linking library lib/libdoca_gpunetio_host.so.5.0.0
+Installing library to /users/gogobop/gpunetio/install/lib and headers to /users/gogobop/gpunetio/install/include
+make[1]: Entering directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_put_bw'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_put_bw'
+make[1]: Entering directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_write_lat'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_write_lat'
+make[1]: Entering directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_write_bw'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/users/gogobop/gpunetio/examples/gpunetio_verbs_write_bw'
+Installing examples to /users/gogobop/gpunetio/install/examples
+total 352K
+-rwxr-xr-x 1 gogobop doc-team4 103K Oct 25 23:10 gpunetio_verbs_put_bw
+-rwxr-xr-x 1 gogobop doc-team4  78K Oct 25 23:10 gpunetio_verbs_write_bw
+-rwxr-xr-x 1 gogobop doc-team4 156K Oct 25 23:10 gpunetio_verbs_write_lat

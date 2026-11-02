@@ -1,0 +1,46 @@
+Using device: cuda
+GPU: Tesla T4
+CUDA version: 13.0
+
+Dataset information
+Training images: 19959
+Testing images: 5000
+First image batch shape: torch.Size([64, 3, 64, 64])
+First label batch shape: torch.Size([64, 1])
+
+Model
+CatDogCNN(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv2): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (fc1): Linear(in_features=8192, out_features=128, bias=True)
+  (fc2): Linear(in_features=128, out_features=1, bias=True)
+)
+
+Training model...
+Epoch 1/10 | Loss: 0.2173 | Training accuracy: 64.33% | Time: 41.38 seconds
+Epoch 2/10 | Loss: 0.1772 | Training accuracy: 73.38% | Time: 41.48 seconds
+Epoch 3/10 | Loss: 0.1544 | Training accuracy: 77.92% | Time: 42.37 seconds
+Epoch 4/10 | Loss: 0.1431 | Training accuracy: 79.06% | Time: 42.27 seconds
+Epoch 5/10 | Loss: 0.1318 | Training accuracy: 81.60% | Time: 41.60 seconds
+Epoch 6/10 | Loss: 0.1215 | Training accuracy: 83.24% | Time: 41.09 seconds
+Epoch 7/10 | Loss: 0.1096 | Training accuracy: 85.01% | Time: 40.51 seconds
+Epoch 8/10 | Loss: 0.0982 | Training accuracy: 86.98% | Time: 41.26 seconds
+Epoch 9/10 | Loss: 0.0854 | Training accuracy: 89.16% | Time: 41.43 seconds
+Epoch 10/10 | Loss: 0.0749 | Training accuracy: 90.76% | Time: 41.40 seconds
+
+Evaluating model...
+
+PART III RESULTS
+Run name: aws_t4_fixed
+Device: cuda
+GPU: Tesla T4
+Final training loss: 0.0749
+Test loss: 0.1564
+Test accuracy: 79.00%
+Total training time: 414.79 seconds
+Total testing time: 10.26 seconds
+
+Saved:
+results/part3_aws_t4_fixed_model.pth
+results/part3_aws_t4_fixed_results.txt
+results/part3_aws_t4_fixed_loss.png

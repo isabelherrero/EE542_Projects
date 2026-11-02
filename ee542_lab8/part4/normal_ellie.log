@@ -1,0 +1,30 @@
+EAL: Detected CPU lcores: 2
+EAL: Detected NUMA nodes: 1
+EAL: Detected shared linkage of DPDK
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: Physical addresses are unavailable, selecting IOVA as VA mode.
+EAL: Selected IOVA mode 'VA'
+TELEMETRY: No legacy callbacks, legacy socket not created
+DPDK receiver started
+Frame 0 complete
+Frame 1 complete
+Frame 2 complete
+Frame 3 complete
+Frame 4 complete
+Frame 5 complete
+Frame 6 complete
+Frame 7 complete
+Frame 8 complete
+Frame 9 complete
+Frame 10 complete
+Frame 11 complete
+Frame 12 complete
+Frame 13 complete
+Frame 14 complete
+Frame 15 complete
+
+=== Receiver Statistics ===
+Packets received: 1728
+Packets dropped: 0
+Duplicate chunks: 0
+Complete images: 16/16

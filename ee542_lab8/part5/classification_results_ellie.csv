@@ -1,0 +1,17 @@
+Frame,Original class,Original label,Received class,Byte match,Top-1 match
+0,107,jellyfish,107,True,True
+1,741,prayer rug,741,True,True
+2,107,jellyfish,107,True,True
+3,741,prayer rug,741,True,True
+4,741,prayer rug,741,True,True
+5,107,jellyfish,107,True,True
+6,107,jellyfish,107,True,True
+7,741,prayer rug,741,True,True
+8,107,jellyfish,107,True,True
+9,611,jigsaw puzzle,611,True,True
+10,107,jellyfish,107,True,True
+11,741,prayer rug,741,True,True
+12,107,jellyfish,107,True,True
+13,741,prayer rug,741,True,True
+14,107,jellyfish,107,True,True
+15,107,jellyfish,107,True,True

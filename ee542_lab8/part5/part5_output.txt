@@ -1,0 +1,31 @@
+/opt/pytorch/lib/python3.13/site-packages/torch/cuda/__init__.py:68: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[10/19/2026-22:03:42] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+[10/19/2026-22:03:42] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+Received bytes match originals: True
+Pinned H2D copy size: 2408448 bytes
+Pinned H2D copy time: 0.386017 ms
+Pinned H2D bandwidth: 6.239 GB/s
+Maximum logit difference: 0.000000
+Top-1 agreement: 100.00%
+
+Frame   Original    Received    Match   Predicted class
+0       818         818         True    spotlight
+1       392         392         True    rock beauty
+2       818         818         True    spotlight
+3       818         818         True    spotlight
+4       644         644         True    matchstick
+5       644         644         True    matchstick
+6       111         111         True    nematode
+7       644         644         True    matchstick
+8       644         644         True    matchstick
+9       818         818         True    spotlight
+10      644         644         True    matchstick
+11      111         111         True    nematode
+12      111         111         True    nematode
+13      644         644         True    matchstick
+14      549         549         True    envelope
+15      854         854         True    theater curtain
+
+Created part5_results.csv
+Created part5_summary.txt

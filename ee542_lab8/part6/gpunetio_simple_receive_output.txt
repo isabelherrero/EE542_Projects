@@ -1,0 +1,18 @@
+/tmp/build/doca_gpunetio_simple_receive -n 00:05.0 -g 00:1e.0 -e 0
+[2026-10-20 23:21:02:849891][1717829632][DOCA][INF][CORE][doca_log.cpp:1335] DOCA version 3.5.0098
+[2026-10-20 23:21:02:849938][1717829632][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:198][main] Starting the sample
+[2026-10-20 23:21:03:104416][1717829632][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:240][main] Sample configuration:
+        GPU 00:1e.0
+        NIC 00:05.0
+        Receive exec scope Thread
+
+[2026-10-20 23:21:03:104538][1717829632][DOCA][WRN][COMMON][common.c:98][open_doca_device_with_pci_and_callback] Matching device not found
+[2026-10-20 23:21:03:104547][1717829632][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_sample.c:85][init_doca_device] Failed to open NIC device based on PCI address
+[2026-10-20 23:21:03:104562][1717829632][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_sample.c:659][gpunetio_simple_receive] Function init_doca_device returned Requested Resource Not Found
+[2026-10-20 23:21:03:104565][1717829632][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:249][main] gpunetio_simple_receive() encountered an error: Requested Resource Not Found
+[2026-10-20 23:21:03:104572][1717829632][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:261][main] Sample finished with errors
+
+
+
+
+

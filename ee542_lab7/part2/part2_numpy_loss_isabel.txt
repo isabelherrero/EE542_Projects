@@ -1,0 +1,13 @@
+Part II NumPy CNN Results
+Training images: 19959
+Testing images: 5000
+Epochs: 10
+Final loss: 0.2472
+Test accuracy: 55.92%
+Training feature extraction time: 76.46 seconds
+Fully connected training time: 5.83 seconds
+Total training time: 82.28 seconds
+Testing feature extraction time: 16.85 seconds
+Evaluation time: 0.0278 seconds
+Total testing time: 16.88 seconds
+Complete program time: 109.81 seconds

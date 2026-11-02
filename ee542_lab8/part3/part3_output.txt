@@ -1,0 +1,22 @@
+Images: 16
+Bytes per image: 150528
+Image bytes per packet: 1400
+Custom header size: 22
+Packets per image: 108
+Total packets: 1728
+Shuffled: False
+Created: images.pcap
+Created: original_images.bin
+Created: original_images/frame_00.bin through frame_15.bin
+Images: 16
+Bytes per image: 150528
+Image bytes per packet: 1400
+Custom header size: 22
+Packets per image: 108
+Total packets: 1728
+Shuffled: True
+Created: images_shuffled.pcap
+Created: original_images.bin
+Created: original_images/frame_00.bin through frame_15.bin
+images.pcap packets = 1728 maximum Ethernet frame = 1464 bytes
+images_shuffled.pcap packets = 1728 maximum Ethernet frame = 1464 bytes

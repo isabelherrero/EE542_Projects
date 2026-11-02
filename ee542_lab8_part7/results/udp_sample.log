@@ -1,0 +1,81 @@
+devel-cuda13.0.0-3.5.0-devel-host: Pulling from nvidia/doca/doca
+Digest: sha256:546268c49599c49402b64b8309d487e0434ac1706bd26352dab842aff50eba1b
+Status: Image is up to date for nvcr.io/nvidia/doca/doca:devel-cuda13.0.0-3.5.0-devel-host
+nvcr.io/nvidia/doca/doca:devel-cuda13.0.0-3.5.0-devel-host
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+The Meson build system
+Version: 1.3.2
+Source dir: /opt/mellanox/doca/samples/doca_gpunetio/gpunetio_simple_receive
+Build dir: /tmp/build
+Build type: native build
+Program cat found: YES (/usr/bin/cat)
+Project name: DOCA_SAMPLE
+Project version: 3.5.0098
+C compiler for the host machine: cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C linker for the host machine: cc ld.bfd 2.42
+C++ compiler for the host machine: c++ (gcc 13.3.0 "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C++ linker for the host machine: c++ ld.bfd 2.42
+Cuda compiler for the host machine: nvcc (nvcc 13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0)
+Cuda linker for the host machine: nvcc nvlink 13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
+Run-time dependency doca-common found: YES 3.5.0098
+Run-time dependency doca-gpunetio found: YES 3.5.0098
+Run-time dependency doca-argp found: YES 3.5.0098
+Run-time dependency doca-eth found: YES 3.5.0098
+Run-time dependency doca-flow found: YES 3.5.0098
+meson.build:57: WARNING: Module CUDA has no backwards or forwards compatibility and might not exist in future releases.
+Run-time dependency CUDA (modules: cudart, cuda) found: YES 13.0 (/usr/local/cuda)
+Build targets in project: 1
+
+DOCA_SAMPLE 3.5.0098
+
+  User defined options
+    buildtype: release
+
+Found ninja-1.11.1 at /usr/bin/ninja
+ninja: Entering directory `/tmp/build'
+[1/6] Compiling C object doca_gpunetio_simple_receive.p/.._.._.._applications_common_utils.c.o
+[2/6] Compiling C object doca_gpunetio_simple_receive.p/gpunetio_simple_receive_main.c.o
+[3/6] Compiling C object doca_gpunetio_simple_receive.p/.._.._common.c.o
+[4/6] Compiling C object doca_gpunetio_simple_receive.p/host_gpunetio_simple_receive_sample.c.o
+[5/6] Compiling Cuda object doca_gpunetio_simple_receive.p/device_gpunetio_simple_receive_kernel.cu.o
+[6/6] Linking target doca_gpunetio_simple_receive
+[2026-10-26 00:18:12:786639][385036288][DOCA][INF][CORE][doca_log.cpp:1335] DOCA version 3.5.0098
+[2026-10-26 00:18:12:786734][385036288][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:198][main] Starting the sample
+[2026-10-26 00:18:13:012585][385036288][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:240][main] Sample configuration:
+        GPU 25:00.0
+        NIC 41:00.0
+        Receive exec scope Thread
+
+[2026-10-26 00:18:13:016182][385036288][DOCA][WRN][FLOW][engine_model.c:100] adapting queue depth to 128.
+[2026-10-26 00:18:13:024334][385036288][DOCA][ERR][CORE][linux_devx_adapter.cpp:186] devx adapter 0x5c66b0621bb0: FW failed to execute general PRM command=0x100, status=BAD_PARAM_ERR (0x3) with syndrome=0x77ad2a
+[2026-10-26 00:18:13:024344][385036288][DOCA][ERR][CORE][device_adapter.cpp:143] Query devx HCA capabilities with op_mod=0x37 failed. err=DOCA_ERROR_DRIVER, syndrome=0x77ad2a
+[2026-10-26 00:18:13:024348][385036288][DOCA][ERR][FLOW][hws_port.c:2258] Failed to query WQE based flow table capabilities.
+[2026-10-26 00:18:13:024352][385036288][DOCA][ERR][FLOW][hws_port.c:2625] Failed to get hws cap
+[2026-10-26 00:18:13:024365][385036288][DOCA][ERR][FLOW][engine_port.c:677] failed to create port - creating dpdk port
+[2026-10-26 00:18:13:024370][385036288][DOCA][ERR][FLOW][engine_port.c:832] failed creating port - driver port creation error for port indexed 0
+[2026-10-26 00:18:13:024374][385036288][DOCA][ERR][FLOW][doca_flow.c:1609] failed creating doca flow port - port creation failed
+[2026-10-26 00:18:13:024378][385036288][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_sample.c:175][start_doca_flow] Failed to start doca flow port with: Unknown error
+[2026-10-26 00:18:13:024382][385036288][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_sample.c:671][gpunetio_simple_receive] Function start_doca_flow returned Unknown error
+[2026-10-26 00:18:13:024385][385036288][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_sample.c:403][destroy_rxq] Destroying Rxq
+[2026-10-26 00:18:13:024763][385036288][DOCA][ERR][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:249][main] gpunetio_simple_receive() encountered an error: Unknown error
+[2026-10-26 00:18:13:024772][385036288][DOCA][INF][GPUNETIO_SIMPLE_RECEIVE][gpunetio_simple_receive_main.c:261][main] Sample finished with errors
+Sample exit code: 1

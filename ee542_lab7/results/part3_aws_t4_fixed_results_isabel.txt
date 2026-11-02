@@ -1,0 +1,14 @@
+Part III PyTorch CNN Results
+Run name: aws_t4_fixed
+Device: cuda
+GPU: Tesla T4
+CUDA version: 13.0
+Training images: 19959
+Testing images: 5000
+Batch size: 64
+Epochs: 10
+Final training loss: 0.0749
+Test loss: 0.1564
+Test accuracy: 79.00%
+Total training time: 414.79 seconds
+Total testing time: 10.26 seconds

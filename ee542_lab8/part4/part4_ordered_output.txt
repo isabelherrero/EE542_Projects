@@ -1,0 +1,31 @@
+EAL: Detected CPU lcores: 4
+EAL: Detected NUMA nodes: 1
+EAL: Detected shared linkage of DPDK
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: Selected IOVA mode 'VA'
+Receiving packets from DPDK port 0
+Frame 0 complete: 108 segments, 150528 bytes
+Frame 1 complete: 108 segments, 150528 bytes
+Frame 2 complete: 108 segments, 150528 bytes
+Frame 3 complete: 108 segments, 150528 bytes
+Frame 4 complete: 108 segments, 150528 bytes
+Frame 5 complete: 108 segments, 150528 bytes
+Frame 6 complete: 108 segments, 150528 bytes
+Frame 7 complete: 108 segments, 150528 bytes
+Frame 8 complete: 108 segments, 150528 bytes
+Frame 9 complete: 108 segments, 150528 bytes
+Frame 10 complete: 108 segments, 150528 bytes
+Frame 11 complete: 108 segments, 150528 bytes
+Frame 12 complete: 108 segments, 150528 bytes
+Frame 13 complete: 108 segments, 150528 bytes
+Frame 14 complete: 108 segments, 150528 bytes
+Frame 15 complete: 108 segments, 150528 bytes
+
+Receiver statistics
+Packets received: 1728
+Chunks accepted: 1728
+Packets ignored: 0
+Packets dropped: 0
+Duplicate chunks: 0
+Complete images: 16/16
+Output file: frames_rx_ordered.bin
